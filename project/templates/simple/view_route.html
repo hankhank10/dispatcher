@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Path viewer</title>
+</head>
+
+<table>
+    <tr>
+        <td>Number</td>
+        <td>Lat</td>
+        <td>Lon</td>
+        <td>Arrival time</td>
+    </tr>
+
+    {% for item in waypoints %}
+    <tr>
+        <td>{{ item.number_within_path }}</td>
+        <td>{{ item.latitude }}</td>
+        <td>{{ item.longitude }}</td>
+        <td>{{ item.time_due_to_arrive }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</html>
