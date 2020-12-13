@@ -69,16 +69,16 @@
 	 var map = new L.map('map', mapOptions);
 	 
 	 // Creating a Layer object
-	 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+	 var layer = new L.TileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png');
 	 
 	 // Adding layer to the map
 	 map.addLayer(layer);
 
 	 // Creates a red marker with the coffee icon
 	 var redMarker = L.ExtraMarkers.icon({
-		icon: 'fa-coffee',
+		icon: 'fa-bell',
 		markerColor: 'red',
-		shape: 'square',
+		shape: 'star',
 		prefix: 'fa'
 	  });
 	
