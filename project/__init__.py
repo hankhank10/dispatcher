@@ -34,4 +34,7 @@ app.register_blueprint(pathfinding_handling_blueprint)
 from .response_unit_handling import response_unit_handling as response_unit_handling
 app.register_blueprint(response_unit_handling)
 
+from .main import main as main
+app.register_blueprint(main)
+
 
