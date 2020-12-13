@@ -31,6 +31,9 @@
 	<link rel="stylesheet" href="/static/vendor/extramarkers/css/leaflet.extra-markers.min.css">
 	<script src="/static/vendor/extramarkers/js/leaflet.extra-markers.min.js"></script>
 
+	<!--- Custom JS-->
+	<script src="/static/js/dispatcherCustomJS.js"></script>
+
 	<!-- Set script root-->
 	<script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -56,6 +59,18 @@
 
 	<div id = "map" style = "width:700px; height:450px;"></div>
 
+	<button id=clearMapButton class="btn btn-primary btn-sm" type="button" onclick="clearMarkers()">
+		<i class="fas fa-trash"></i>
+	</button>
+
+	<button id=updateCalloutsButton class="btn btn-primary btn-sm" type="button" onclick="updateCallouts()">
+		<i class="fas fa-sync"></i>
+	</button>
+
+	<button id=newCalloutButton class="btn btn-primary btn-sm" type="button" onclick="pingURL('/gamelogic/create_new_callout')">
+		<i class="fas fa-sync"></i>
+	</button>
+
 </div> <!--Main container-->
 
 <script>
@@ -63,26 +78,20 @@
 	var mapOptions = {
 		center: [51.50984266384934, -0.12466092828771125],
 		zoom: 15
-	 }
+	}
 	 
-	 // Creating a map object
-	 var map = new L.map('map', mapOptions);
-	 
-	 // Creating a Layer object
-	 var layer = new L.TileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png');
-	 
-	 // Adding layer to the map
-	 map.addLayer(layer);
-
-	 // Creates a red marker with the coffee icon
-	 var redMarker = L.ExtraMarkers.icon({
-		icon: 'fa-bell',
-		markerColor: 'red',
-		shape: 'star',
-		prefix: 'fa'
-	  });
+	// Creating a map object
+	var map = new L.map('map', mapOptions);
 	
-	  L.marker([51.50984266384934, -0.12466092828771125], {icon: redMarker}).addTo(map);
+	// Creating a Layer object
+	var layer = new L.TileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png');
+	
+	// Adding layer to the map
+	map.addLayer(layer);
+
+	// Initialise map group
+	initialiseMap();
+
 </script>
 
 

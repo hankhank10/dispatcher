@@ -35,7 +35,7 @@ def create_new_callout():
         latitude = exact_location.latitude,
         longitude = exact_location.longitude,
         location_address = location_address,
-        status = "pendingf"
+        status = "pending"
         )
 
     db.session.add(new_callout)
