@@ -12,28 +12,28 @@ function initialiseMap() {
 
 }
 
-function addMarker(markerType, colour, latitude, longitude) {
+function addMarker(latitude, longitude, markerType, colour, iconText, tooltip) {
 
     if (markerType == 'callout') {
         var iconMarker = L.ExtraMarkers.icon({
             icon: 'fa-number',
-            number: '4',
+            number: iconText,
             markerColor: colour,
             shape: 'star',
             prefix: 'fa'
         });
-        var new_marker = L.marker([latitude, longitude], {icon: iconMarker}).addTo(calloutMarkerGroup);
+        var new_marker = L.marker([latitude, longitude], {icon: iconMarker}).bindPopup(tooltip).addTo(calloutMarkerGroup);
     }
 
     if (markerType == 'response_unit') {
         var iconMarker = L.ExtraMarkers.icon({
             icon: 'fa-number',
             markerColor: colour,
-            number: '4',
+            number: iconText,
             shape: 'circle',
             prefix: 'fa'
         });
-        var new_marker = L.marker([latitude, longitude], {icon: iconMarker}).addTo(responseUnitMarkerGroup);
+        var new_marker = L.marker([latitude, longitude], {icon: iconMarker}).bindPopup(tooltip).addTo(responseUnitMarkerGroup);
     }
 }
 
@@ -66,7 +66,7 @@ function updateCallouts(){
     // Load new points
     $.getJSON($SCRIPT_ROOT + '/json/callout_data', {}, function(data) {
         $.each(data, function(n, element) {
-            addMarker('callout', 'red', element.latitude, element.longitude)
+            addMarker(element.latitude, element.longitude, 'callout', 'red', 2, 'test tooltip')
         });
     })
 }
