@@ -16,7 +16,8 @@ function addMarker(markerType, colour, latitude, longitude) {
 
     if (markerType == 'callout') {
         var iconMarker = L.ExtraMarkers.icon({
-            icon: 'fa-bell',
+            icon: 'fa-number',
+            number: '4',
             markerColor: colour,
             shape: 'star',
             prefix: 'fa'
@@ -26,10 +27,11 @@ function addMarker(markerType, colour, latitude, longitude) {
 
     if (markerType == 'response_unit') {
         var iconMarker = L.ExtraMarkers.icon({
-            icon: 'fa-car',
+            icon: 'fa-number',
             markerColor: colour,
-            shape: 'star',
-            prefix: 'fas'
+            number: '4',
+            shape: 'circle',
+            prefix: 'fa'
         });
         var new_marker = L.marker([latitude, longitude], {icon: iconMarker}).addTo(responseUnitMarkerGroup);
     }
